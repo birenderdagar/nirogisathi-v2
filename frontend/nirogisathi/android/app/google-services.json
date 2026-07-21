@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558322946404",
+    "project_id": "nirogisathi-ebc17",
+    "storage_bucket": "nirogisathi-ebc17.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558322946404:android:882145b87e0ddc3eb96a71",
+        "android_client_info": {
+          "package_name": "com.nirogisathi.nirogisathi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDEHBDnwrUjP8TsXycJKgPi_jcfgxoITc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

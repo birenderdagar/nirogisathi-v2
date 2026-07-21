@@ -1,0 +1,12 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+ios/.generated/
+*.env*
+!.env.example
+
+# Config
+.flutter_arch_gen*.json

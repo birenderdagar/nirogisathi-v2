@@ -1,0 +1,7 @@
+abstract class I{{className}}Repository {
+  Future<List<dynamic>> getAll();
+  Future<dynamic> getById(String id);
+  Future<void> create(dynamic data);
+  Future<void> update(String id, dynamic data);
+  Future<void> delete(String id);
+}
