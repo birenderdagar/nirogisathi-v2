@@ -44,7 +44,7 @@ class ApiConstants {
 
   /// GET USER PROFILE
   static const String profile =
-      "user";
+      "users/profile";
 
   /// UPDATE USER PROFILE
   static const String profileUpdate =

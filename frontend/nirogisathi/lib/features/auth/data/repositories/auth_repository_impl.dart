@@ -725,7 +725,7 @@ class AuthRepositoryImpl
             );
           }
         } catch (e) {
-          debugPrint("⚠️ [AUTH REPO] Network profile fetch failed, falling back to cache: $e");
+          debugPrint("❌ [AUTH REPO] Server profile fetch FAILED — showing cached data which may be STALE. Backend edits will NOT appear until this succeeds: $e");
         }
       }
 
