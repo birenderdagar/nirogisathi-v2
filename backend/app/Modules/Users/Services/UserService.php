@@ -3,6 +3,7 @@
 namespace App\Modules\Users\Services;
 
 use App\Modules\Users\Models\User;
+use App\Modules\Users\Support\UserPhotoStorage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -69,9 +70,11 @@ class UserService
 
         if (request()->hasFile('photo')) {
 
-            $photo = request()
-                ->file('photo')
-                ->store('users', 'public');
+            $photo = UserPhotoStorage::store(
+                request()->file('photo'),
+                $data['name'] ?? 'user',
+                $userId
+            );
         }
 
         /*
@@ -156,9 +159,12 @@ class UserService
         */
         if (request()->hasFile('photo')) {
 
-            $photo = request()
-                ->file('photo')
-                ->store('users', 'public');
+            $photo = UserPhotoStorage::store(
+                request()->file('photo'),
+                $data['name'] ?? $user->name,
+                $user->user_id,
+                $user->photo
+            );
         }
 
         /*

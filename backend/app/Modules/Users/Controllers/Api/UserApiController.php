@@ -4,6 +4,7 @@ namespace App\Modules\Users\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Users\Models\User;
+use App\Modules\Users\Support\UserPhotoStorage;
 use Illuminate\Http\Request;
 
 class UserApiController extends Controller
@@ -101,17 +102,12 @@ class UserApiController extends Controller
         */
         if ($request->hasFile('photo')) {
 
-            $file = $request->file('photo');
-
-            $filename = time() . '_' . $file->getClientOriginalName();
-
-            $file->storeAs(
-                'users',
-                $filename,
-                'public'
+            $user->photo = UserPhotoStorage::store(
+                $request->file('photo'),
+                $request->name ?? $user->name,
+                $user->user_id,
+                $user->photo
             );
-
-            $user->photo = 'users/' . $filename;
         }
 
         /*
