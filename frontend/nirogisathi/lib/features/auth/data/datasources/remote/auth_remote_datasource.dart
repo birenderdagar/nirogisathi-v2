@@ -128,17 +128,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<dynamic> getUserProfile() async {
-    // Backend route is POST /users/profile and identifies the user by user_id in the body
     final uid = apiClient.localStorage.getUid();
+
     if (uid == null) {
-      throw Exception("Cannot fetch profile: no cached user_id");
+      throw Exception('User ID not found in local storage');
     }
 
-    debugPrint("🌐 [NETWORK] POST Request to: ${ApiConstants.baseUrl}${ApiConstants.profile}");
+    debugPrint(
+      "🌐 [NETWORK] POST Request to: ${ApiConstants.baseUrl}${ApiConstants.profile}",
+    );
+
     try {
       final response = await apiClient.post(
         ApiConstants.profile,
-        data: {"user_id": int.tryParse(uid) ?? uid},
+        data: {
+          'user_id': int.tryParse(uid) ?? uid,
+        },
       );
       debugPrint("🌐 [NETWORK] Response Status: ${response.statusCode}");
       debugPrint("🌐 [NETWORK] Response Body: ${response.data}");

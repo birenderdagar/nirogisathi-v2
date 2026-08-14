@@ -660,18 +660,15 @@ class AuthRepositoryImpl
 
     try {
 
-      final token =
-      session.storage.getToken();
-
       final uid = session.getUid();
 
-      if (token == null && uid == null) {
+      if (uid == null) {
 
         return const Right(null);
       }
 
-      // 1. Try fresh data if token exists (Ensures UI stays in sync with DB)
-      if (token != null) {
+      // 1. Try fresh data from backend (keeps app in sync after admin updates)
+      if (uid != null) {
         try {
           final response =
           await remoteDataSource
@@ -725,7 +722,7 @@ class AuthRepositoryImpl
             );
           }
         } catch (e) {
-          debugPrint("❌ [AUTH REPO] Server profile fetch FAILED — showing cached data which may be STALE. Backend edits will NOT appear until this succeeds: $e");
+          debugPrint("⚠️ [AUTH REPO] Network profile fetch failed, falling back to cache: $e");
         }
       }
 
