@@ -5,7 +5,7 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     FLUTTER_HOME=/opt/flutter \
-    PATH=/opt/flutter/bin:/usr/local/bin:/usr/bin:/bin
+    PATH=/opt/flutter/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # System packages: PHP 8.3 + extensions required by Laravel, plus build tooling.
 # `locales` is required by the Cloud Agent VNC/browser (computer-use) setup.
