@@ -10,9 +10,11 @@ return new class extends Migration
     {
         Schema::table('employees', function (Blueprint $table) {
 
-            $table->string('photo')
-                  ->nullable()
-                  ->after('employee_id');
+            if (!Schema::hasColumn('employees', 'photo')) {
+                $table->string('photo')
+                      ->nullable()
+                      ->after('employee_id');
+            }
 
         });
     }
@@ -21,7 +23,9 @@ return new class extends Migration
     {
         Schema::table('employees', function (Blueprint $table) {
 
-            $table->dropColumn('photo');
+            if (Schema::hasColumn('employees', 'photo')) {
+                $table->dropColumn('photo');
+            }
 
         });
     }

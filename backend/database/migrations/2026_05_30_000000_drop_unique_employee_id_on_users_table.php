@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropUnique('users_employee_id_unique');
-        });
+        if ($this->hasIndex('users', 'users_employee_id_unique')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropUnique('users_employee_id_unique');
+            });
+        }
     }
 
     /**
@@ -21,8 +23,16 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unique('employee_id');
-        });
+        if (! $this->hasIndex('users', 'users_employee_id_unique')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->unique('employee_id');
+            });
+        }
+    }
+
+    private function hasIndex(string $table, string $index): bool
+    {
+        return collect(Schema::getIndexes($table))
+            ->contains(fn ($i) => ($i['name'] ?? null) === $index);
     }
 };
