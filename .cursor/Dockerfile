@@ -8,11 +8,14 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/opt/flutter/bin:/usr/local/bin:/usr/bin:/bin
 
 # System packages: PHP 8.3 + extensions required by Laravel, plus build tooling.
+# `locales` is required by the Cloud Agent VNC/browser (computer-use) setup.
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
-      ca-certificates curl git unzip xz-utils gnupg \
+      ca-certificates curl git unzip xz-utils gnupg locales \
       sqlite3 \
       php-cli php-mbstring php-xml php-bcmath php-curl php-sqlite3 php-gd php-zip php-intl php-tokenizer \
+ && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
+ && locale-gen en_US.UTF-8 \
  && rm -rf /var/lib/apt/lists/*
 
 # Composer (PHP dependency manager)
@@ -31,6 +34,8 @@ RUN curl -L -o /tmp/flutter.tar.xz \
  && tar -xf /tmp/flutter.tar.xz -C /opt \
  && rm -f /tmp/flutter.tar.xz \
  && git config --system --add safe.directory /opt/flutter \
+ && ln -sf /opt/flutter/bin/flutter /usr/local/bin/flutter \
+ && ln -sf /opt/flutter/bin/dart /usr/local/bin/dart \
  && flutter config --no-analytics \
  && flutter --version \
  && chown -R ubuntu:ubuntu /opt/flutter
