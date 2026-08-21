@@ -1,0 +1,20 @@
+{
+  "name": "Nirogi Sathi",
+  "user": "ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "install": "set -e\ncd backend\ncomposer install --no-interaction --prefer-dist\n[ -f .env ] || cp .env.example .env\ngrep -q '^APP_KEY=base64:' .env || php artisan key:generate --force\ntouch database/database.sqlite\nphp artisan migrate --force\nphp artisan db:seed --force\nnpm install\nnpm run build\ncd ../frontend/nirogisathi\nflutter pub get",
+  "terminals": [
+    {
+      "name": "backend-server",
+      "command": "cd backend && php artisan serve --host=0.0.0.0 --port=8000"
+    }
+  ],
+  "ports": [
+    {
+      "name": "Laravel backend",
+      "port": 8000
+    }
+  ]
+}
