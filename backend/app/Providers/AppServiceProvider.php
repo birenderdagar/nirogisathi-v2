@@ -70,6 +70,26 @@ class AppServiceProvider extends ServiceProvider
             app_path('Modules/Settings/Views')
         );
 
+        View::addNamespace(
+            'Banners',
+            app_path('Modules/Banners/Views')
+        );
+
+        View::addNamespace(
+            'CurrentUpdates',
+            app_path('Modules/CurrentUpdates/Views')
+        );
+
+        View::addNamespace(
+            'Subscriptions',
+            app_path('Modules/Subscriptions/Views')
+        );
+
+        View::addNamespace(
+            'UserSubscriptions',
+            app_path('Modules/UserSubscriptions/Views')
+        );
+
         // Module routes are loaded from routes/web.php to avoid duplicate
         // route names and conflicting middleware behavior.
         // if (file_exists(app_path('Modules/Admin/Routes/web.php'))) {

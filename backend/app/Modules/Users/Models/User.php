@@ -2,10 +2,11 @@
 
 namespace App\Modules\Users\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Modules\Employees\Models\Employee;
+use App\Modules\UserSubscriptions\Models\UserSubscription;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -72,5 +73,10 @@ class User extends Authenticatable
             'employee_id',
             'employee_id'
         );
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(UserSubscription::class);
     }
 }

@@ -97,6 +97,26 @@ BLOCK 1: SIDEBAR (FULL UPDATED WITH ROUTES)
                 👨‍💼 Employees
                 </a>
 
+                <a href="<?php echo e(route('banners.index')); ?>"
+                class="block px-4 py-3 hover:bg-cyan-500 rounded-xl transition">
+                🖼️ Banners
+                </a>
+
+                <a href="<?php echo e(route('current-updates.index')); ?>"
+                class="block px-4 py-3 hover:bg-cyan-500 rounded-xl transition">
+                📊 Current Updates
+                </a>
+
+                <a href="<?php echo e(route('subscriptions.index')); ?>"
+                class="block px-4 py-3 hover:bg-cyan-500 rounded-xl transition">
+                💳 Subscriptions
+                </a>
+
+                <a href="<?php echo e(route('user-subscriptions.index')); ?>"
+                class="block px-4 py-3 hover:bg-cyan-500 rounded-xl transition">
+                🧾 User Subscriptions
+                </a>
+
                 <a href="#"
                    class="block px-4 py-3 hover:bg-slate-800 rounded-xl transition">
                     🔔 Notifications

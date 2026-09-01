@@ -73,6 +73,16 @@ require base_path('app/Modules/Settings/Routes/web.php');
 
 /*
 |--------------------------------------------------------------------------
+| MODULE ROUTES (banners )
+|--------------------------------------------------------------------------
+*/
+require base_path('app/Modules/Banners/Routes/web.php');
+require base_path('app/Modules/CurrentUpdates/Routes/web.php');
+require base_path('app/Modules/Subscriptions/Routes/web.php');
+require base_path('app/Modules/UserSubscriptions/Routes/web.php');
+
+/*
+|--------------------------------------------------------------------------
 | MODULE ROUTES (roles and permissions )
 |--------------------------------------------------------------------------*/      
 Route::get('/employees', function () {
